@@ -9,57 +9,68 @@ const fillScreen = () => {
     keys.forEach((key) => {
         key.addEventListener("click", () => {
             if((key.textContent != "C") && (key.textContent != "=")) {
-                asd.push(key.textContent)
-                //SEGUIR TRABAJANDO SOBRE ESTO DE ABAJO
-                if((key.textContent == "+") && (key.textContent == "-") && (key.textContent == "x") && (key.textContent == "/")) {
-                    let asd2 = asd.pop()
-                    firstNumber = parseInt(asd2.join(""))
-                    console.log(firstNumber)
-                    resultScreen.textContent = firstNumber
+                if((key.textContent != "+") && (key.textContent != "-") && (key.textContent != "x") && (key.textContent != "/")) {
+                    asd.push(key.textContent)
+                    resultScreen.textContent = asd.join("")
+                } else {
+                    if(firstNumber == 0) {
+                        firstNumber = parseInt(asd.join(""))
+                        resultScreen.innerHTML = ""
+                        asd = []
+                        operator = key.textContent
+                    } else {
+                        secondNumber = parseInt(asd.join(""))
+                        asd = []
+                    }
                 }
             } else if(key.textContent == "C") {
                 resultScreen.innerHTML = ""
                 asd = []
+                firstNumber = 0
+                operator = ""
+                secondNumber = 0
             } else if(key.textContent == "=") {
                 resultScreen.innerHTML = ""
+                asd = []
+                resultScreen.textContent = operate(firstNumber, operator, secondNumber)
+                firstNumber = 0
+                operator = ""
+                secondNumber = 0
             }
         })
     })
 }
 
 const sum = (a, b) => {
-    return console.log(a + b)
+    return a + b
 }
 
 const minus = (a, b) => {
-    return console.log(a - b)
+    return a - b
 }
 
 const multiply = (a, b) => {
-    return console.log(a * b)
+    return a * b
 }
 
 const divide = (a, b) => {
-    return console.log(a / b)
+    return a / b
 }
 
 const operate = (firstNumber, operator, secondNumber) => {
     switch(operator) {
         case "+":
-            sum(firstNumber, secondNumber)
-            break
+            return sum(firstNumber, secondNumber)
         case "-":
-            minus(firstNumber, secondNumber)
-            break
+            return minus(firstNumber, secondNumber)
         case "*":
-            multiply(firstNumber, secondNumber)
-            break
+            return multiply(firstNumber, secondNumber)
         case "/":
-            divide(firstNumber, secondNumber)
-            break
+            return divide(firstNumber, secondNumber)
         default:
-            return console.log("ERROR")
+            return "ERROR"
     }
 }
 
+operate(1, "+", 1)
 fillScreen()
