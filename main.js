@@ -12,16 +12,24 @@ const fillScreen = () => {
                 if((key.textContent != "+") && (key.textContent != "-") && (key.textContent != "x") && (key.textContent != "/")) {
                     numbers.push(key.textContent)
                     resultScreen.textContent = numbers.join("")
-                    if(firstNumber != 0) {
-                        secondNumber = parseInt(numbers.join(""))
-                        numbers = []
-                    }
                 } else {
                     if(firstNumber == 0) {
                         firstNumber = parseInt(numbers.join(""))
                         resultScreen.innerHTML = ""
                         numbers = []
                         operator = key.textContent
+                    } else {
+                        if(firstNumber != 0) {
+                            secondNumber = parseInt(numbers.join(""))
+                            numbers = []
+                        }
+                        let operation = operate(firstNumber, operator, secondNumber);
+                        firstNumber = operation;
+                        operator = key.textContent;
+                        secondNumber = 0;
+                        resultScreen.innerHTML = ""
+                        numbers = []
+                        resultScreen.textContent = firstNumber;
                     }
                 }
             } else if(key.textContent == "C") {
@@ -30,14 +38,19 @@ const fillScreen = () => {
                 firstNumber = 0
                 operator = ""
                 secondNumber = 0
+                //RESOLVER EL PROBLEMA DEL ENCADENAMIENTO DE OPERACIONES UNA VEZ QUE SE APRIETA "="
             } else if(key.textContent == "=") {
+                if(firstNumber != 0) {
+                    secondNumber = parseInt(numbers.join(""))
+                    numbers = []
+                }
                 resultScreen.innerHTML = ""
-                numbers = []
                 let operation = operate(firstNumber, operator, secondNumber)
                 resultScreen.textContent = operation
                 firstNumber = operation
                 operator = ""
-                secondNumber = 0
+                console.log(operator)
+                secondNumber = 0                
             }
         })
     })
