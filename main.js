@@ -8,28 +8,28 @@ const fillScreen = () => {
     let numbers = []
     keys.forEach((key) => {
         key.addEventListener("click", () => {
-            if((key.textContent != "C") && (key.textContent != "=")) {
+            if((key.textContent != "C") && (key.textContent != "=") && (key.textContent != "Del")) {
                 if((key.textContent != "+") && (key.textContent != "-") && (key.textContent != "x") && (key.textContent != "/")) {
                     numbers.push(key.textContent)
                     resultScreen.textContent = numbers.join("")
                 } else {
                     if(firstNumber == 0) {
-                        firstNumber = parseInt(numbers.join(""))
+                        firstNumber = parseFloat(numbers.join(""))
                         resultScreen.innerHTML = ""
                         numbers = []
                         operator = key.textContent
                     } else {
                         if(firstNumber != 0) {
-                            secondNumber = parseInt(numbers.join(""))
+                            secondNumber = parseFloat(numbers.join(""))
                             numbers = []
                         }
-                        let operation = operate(firstNumber, operator, secondNumber);
-                        firstNumber = operation;
-                        operator = key.textContent;
-                        secondNumber = 0;
+                        let operation = Number(operate(firstNumber, operator, secondNumber).toFixed(2))
+                        firstNumber = operation
+                        operator = key.textContent
+                        secondNumber = 0
                         resultScreen.innerHTML = ""
                         numbers = []
-                        resultScreen.textContent = firstNumber;
+                        resultScreen.textContent = firstNumber
                     }
                 }
             } else if(key.textContent == "C") {
@@ -41,16 +41,18 @@ const fillScreen = () => {
                 //RESOLVER EL PROBLEMA DEL ENCADENAMIENTO DE OPERACIONES UNA VEZ QUE SE APRIETA "="
             } else if(key.textContent == "=") {
                 if(firstNumber != 0) {
-                    secondNumber = parseInt(numbers.join(""))
+                    secondNumber = parseFloat(numbers.join(""))
                     numbers = []
                 }
                 resultScreen.innerHTML = ""
-                let operation = operate(firstNumber, operator, secondNumber)
+                let operation = Number(operate(firstNumber, operator, secondNumber).toFixed(2))
                 resultScreen.textContent = operation
                 firstNumber = operation
                 operator = ""
-                console.log(operator)
                 secondNumber = 0                
+            } else if(key.textContent == "Del") {
+                numbers.pop()
+                resultScreen.textContent = numbers.join("")
             }
         })
     })

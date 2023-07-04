@@ -19,15 +19,20 @@ body {
     border: 1px solid black;
     width: 400px;
     height: 500px;
+    background-color: rgb(37, 37, 37);
+}
+
+.headerFooter {
+    color: white;
 }
 
 .resultScreen {
     width: 388px;
     height: 100px;
     border: 1px solid black;
-    margin-top: 5px;
     font-size: 50px;
-    line-height: 90px;
+    line-height: 80px;
+    background-color: rgb(73, 184, 115);
 }
 
 .keyboard {
@@ -37,6 +42,21 @@ body {
     padding-top: 5px;
     padding-bottom: 5px;
     gap: 5px;
+}
+
+.clearKeyboard {
+    display: flex;
+    flex: 1;
+    width: 390px;
+    height: 400px;
+    padding-top: 5px;
+}
+
+.clearKeyboard button {
+    flex-grow: 1;
+    font-size: 25px;
+    background-color: rgb(164, 164, 165);
+    color: white;
 }
 
 .numericKeyboard {
@@ -53,6 +73,8 @@ body {
 .firstLine button {
     flex-grow: 1;
     font-size: 25px;
+    background-color: rgb(164, 164, 165);
+    color: white;
 }
 
 .secondLine {
@@ -63,6 +85,8 @@ body {
 .secondLine button {
     flex-grow: 1;
     font-size: 25px;
+    background-color: rgb(164, 164, 165);
+    color: white;
 }
 
 .thirdLine {
@@ -73,6 +97,8 @@ body {
 .thirdLine button {
     flex-grow: 1;
     font-size: 25px;
+    background-color: rgb(164, 164, 165);
+    color: white;
 }
 
 .fourthLine {
@@ -83,6 +109,8 @@ body {
 .fourthLine button {
     flex-grow: 1;
     font-size: 25px;
+    background-color: rgb(164, 164, 165);
+    color: white;
 }
 
 .operatorsColumn {
@@ -94,4 +122,6 @@ body {
 .operatorsColumn button {
     flex: 1;
     font-size: 25px;
+    background-color: rgb(164, 164, 165);
+    color: white;
 }
